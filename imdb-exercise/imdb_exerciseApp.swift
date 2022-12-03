@@ -13,8 +13,12 @@ struct imdb_exerciseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            let configManager = Config.shared
+            let movieRepository = MovieRepository(context: persistenceController.container.viewContext)
+            let imdb = IMDB(baseURL: configManager.GetIMDBAPIURL(), apiKey: configManager.GetIMDBAPIKey())
+            let a = ContentViewAdapter(movieRepository: movieRepository, imdb: imdb)
+            ContentView(adapter: a)
+                .environment(\.managedObjectContext, movieRepository.context)
         }
     }
 }

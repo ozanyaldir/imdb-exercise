@@ -6,85 +6,75 @@
 //
 
 import SwiftUI
+import Kingfisher
 import CoreData
 
+struct ErrorMessage: Identifiable {
+    var id: String { message }
+    let message: String
+}
+
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    let adapter: ContentViewAdapter
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Movie.title, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    
+    private var items: FetchedResults<Movie>
+    
+    @State private var message: ErrorMessage?
+    
+    @State private var searchText = ""
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        adapter.GetMovieDetailsPage(m: item)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        HStack{
+                            KFImage.url(item.image)
+                                .resizable()
+                                .frame(width: 40, height: 50)
+                            Text(item.title!).font(.headline)
+                        }
                     }
                 }
             }
-            Text("Select an item")
+        }
+        .alert(item: $message) { message in
+            Alert(title: Text("Error"), message: Text(message.message), dismissButton: .cancel())
+        }
+        .searchable(text: $searchText, prompt: "Look for something")
+        .onChange(of: searchText) { newValue in
+            //TODO: API gives limited requests so put this limit (Avoided overkill)
+            if (newValue.count < 2) {
+                return
+            }
+            adapter.SearchMovies(title: newValue, completion: handleSearchResponse(r:))
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    
+    private func handleSearchResponse(r: Result<[MovieDetail], ViewError>){
+        switch r {
+        case .success(let r):
+            withAnimation { adapter.CacheMovies(ms: r) }
+        case .failure(let err): // Create new Alert
+            switch err {
+            case .message(let m): message = ErrorMessage(message: m)
+            default: message = ErrorMessage(message: message?.message ?? "")
             }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            debugPrint(err)
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        let movieRepository = MovieRepository(context: PersistenceController.preview.container.viewContext)
+        let a = ContentViewAdapter(movieRepository: movieRepository, imdb: IMDBMock())
+        ContentView(adapter: a)
     }
 }
