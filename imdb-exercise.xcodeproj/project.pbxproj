@@ -13,6 +13,8 @@
 		DA01AAD5293BCD790045835A /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD4293BCD790045835A /* MovieRepository.swift */; };
 		DA01AAD8293BD0220045835A /* movie_repository_mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD7293BD0220045835A /* movie_repository_mock.swift */; };
 		DA01AADB293BE7AD0045835A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA01AADA293BE7AD0045835A /* Kingfisher */; };
+		DA01AADD293CD4DF0045835A /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AADC293CD4DF0045835A /* MovieDetailView.swift */; };
+		DA01AADF293CD7CB0045835A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AADE293CD7CB0045835A /* Coordinator.swift */; };
 		DA2106FD293B7A8100E23396 /* imdb_exerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FC293B7A8100E23396 /* imdb_exerciseApp.swift */; };
 		DA2106FF293B7A8100E23396 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FE293B7A8100E23396 /* Persistence.swift */; };
 		DA210702293B7A8100E23396 /* imdb_exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */; };
@@ -55,6 +57,8 @@
 		DA01AAD1293BC02C0045835A /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		DA01AAD4293BCD790045835A /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		DA01AAD7293BD0220045835A /* movie_repository_mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movie_repository_mock.swift; sourceTree = "<group>"; };
+		DA01AADC293CD4DF0045835A /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		DA01AADE293CD7CB0045835A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DA2106F9293B7A8100E23396 /* imdb-exercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "imdb-exercise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2106FC293B7A8100E23396 /* imdb_exerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_exerciseApp.swift; sourceTree = "<group>"; };
 		DA2106FE293B7A8100E23396 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -167,9 +171,11 @@
 				DA210734293B84D600E23396 /* pkg */,
 				DA2106FC293B7A8100E23396 /* imdb_exerciseApp.swift */,
 				DA2106FE293B7A8100E23396 /* Persistence.swift */,
+				DA01AADE293CD7CB0045835A /* Coordinator.swift */,
 				DA210703293B7A8100E23396 /* ContentView.swift */,
 				DA210745293BA59E00E23396 /* ContentViewAdapter.swift */,
 				DA01AAD1293BC02C0045835A /* MovieDetailViewModel.swift */,
+				DA01AADC293CD4DF0045835A /* MovieDetailView.swift */,
 				DA210705293B7A8200E23396 /* Assets.xcassets */,
 				DA210707293B7A8200E23396 /* imdb_exercise.entitlements */,
 				DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */,
@@ -386,10 +392,12 @@
 				DA210744293BA25000E23396 /* response.swift in Sources */,
 				DA210737293B84E500E23396 /* imdb.swift in Sources */,
 				DA210702293B7A8100E23396 /* imdb_exercise.xcdatamodeld in Sources */,
+				DA01AADF293CD7CB0045835A /* Coordinator.swift in Sources */,
 				DA210704293B7A8100E23396 /* ContentView.swift in Sources */,
 				DA21073F293B9EC200E23396 /* model.swift in Sources */,
 				DA01AAD8293BD0220045835A /* movie_repository_mock.swift in Sources */,
 				DA2106FF293B7A8100E23396 /* Persistence.swift in Sources */,
+				DA01AADD293CD4DF0045835A /* MovieDetailView.swift in Sources */,
 				DA01AACA293BAA1A0045835A /* imdb_mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

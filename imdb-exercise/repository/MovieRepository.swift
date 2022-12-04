@@ -8,21 +8,63 @@
 import Foundation
 import CoreData
 
+protocol MovieRepositoryContentDelegate: AnyObject{
+    func moviesListDidChangeContent(_ movies: [Movie])
+}
+
 protocol iMovieRepository{
     var context: NSManagedObjectContext { get }
+    var contentDelegate: MovieRepositoryContentDelegate? { get }
     
+    func SetContentDelegate(delegate: MovieRepositoryContentDelegate)
+    
+    func FetchMovies() -> ([Movie]?, Error?)
     func TruncateMoviesTable() -> Error?
     func InsertMovies(models: [MovieDetail]) -> Error?
     func UpdateMovieDetails(id: String, model: MovieDetail) -> Error?
     func UpdateMovieRatings(id: String, model: MovieRatings) -> Error?
 }
 
-struct MovieRepository: iMovieRepository {
+class MovieRepository: NSObject, iMovieRepository {
+    let context: NSManagedObjectContext
+    weak var contentDelegate: MovieRepositoryContentDelegate? = nil
     
-    var context: NSManagedObjectContext
+    let searchMoviesController: NSFetchedResultsController<Movie>
+    
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        searchMoviesController = NSFetchedResultsController(
+            fetchRequest: MovieRepository.searchMoviesFetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        super.init()
+        searchMoviesController.delegate = self
+    }
+    
+    func SetContentDelegate(delegate: MovieRepositoryContentDelegate){
+        self.contentDelegate = delegate
+    }
+    
+    private static var searchMoviesFetchRequest: NSFetchRequest<Movie>{
+        let request: NSFetchRequest<Movie> = Movie.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Movie.title, ascending: true)]
+
+        return request
+      }
+    
+    
+    func FetchMovies() -> ([Movie]?, Error?){
+        do {
+            try searchMoviesController.performFetch()
+            guard let movies = searchMoviesController.fetchedObjects else { return (nil, nil) }
+            return (movies, nil)
+        } catch {
+          return (nil, error)
+        }
     }
     
     func TruncateMoviesTable() -> Error? {
@@ -94,4 +136,12 @@ struct MovieRepository: iMovieRepository {
         }
     }
     
+}
+
+extension MovieRepository: NSFetchedResultsControllerDelegate {
+  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+      if let ms = controller.fetchedObjects as? [Movie] {
+          self.contentDelegate?.moviesListDidChangeContent(ms)
+      }
+  }
 }

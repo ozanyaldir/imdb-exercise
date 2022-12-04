@@ -14,14 +14,7 @@ struct MovieDetailResponseDTO: Decodable {
     let errorMessage: String?
     
     func toModel() -> [MovieDetail] {
-        
         return self.results.map({$0.map({$0.toModel()})}) ?? []
-        
-        //var arr: [MovieDetail] = []
-        //for m in self.results ?? []{
-          //  arr.append(m.toModel())
-        //}
-        //return arr
     }
 }
 

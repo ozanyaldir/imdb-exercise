@@ -8,11 +8,22 @@
 import Foundation
 import CoreData
 
-struct MovieRepositoryMock: iMovieRepository{
+class MovieRepositoryMock: iMovieRepository{
+    var contentDelegate: MovieRepositoryContentDelegate?
+    
     var context: NSManagedObjectContext
+    
+    
+    func SetContentDelegate(delegate: MovieRepositoryContentDelegate) {
+        self.contentDelegate = delegate
+    }
     
     init(context: NSManagedObjectContext) {
         self.context = context
+    }
+    
+    func FetchMovies() -> ([Movie]?, Error?) {
+        return ([], nil)
     }
     
     func TruncateMoviesTable() -> Error? {
