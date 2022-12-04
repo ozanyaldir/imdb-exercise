@@ -15,13 +15,27 @@
 		DA01AADB293BE7AD0045835A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA01AADA293BE7AD0045835A /* Kingfisher */; };
 		DA01AADD293CD4DF0045835A /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AADC293CD4DF0045835A /* MovieDetailView.swift */; };
 		DA01AADF293CD7CB0045835A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AADE293CD7CB0045835A /* Coordinator.swift */; };
+		DA01AAE2293CE0620045835A /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAE0293CE0620045835A /* ModelTests.swift */; };
+		DA01AAE3293CE2AD0045835A /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21073E293B9EC200E23396 /* model.swift */; };
+		DA01AAE4293CE2C00045835A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FE293B7A8100E23396 /* Persistence.swift */; };
+		DA01AAE5293CE2F40045835A /* imdb_exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */; };
+		DA01AAE6293CE3090045835A /* config_manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AACF293BBF100045835A /* config_manager.swift */; };
+		DA01AAE7293CE30D0045835A /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210741293BA24600E23396 /* enum.swift */; };
+		DA01AAE8293CE3100045835A /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210743293BA25000E23396 /* response.swift */; };
+		DA01AAE9293CE3150045835A /* movie_repository_mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD7293BD0220045835A /* movie_repository_mock.swift */; };
+		DA01AAEA293CE3220045835A /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD4293BCD790045835A /* MovieRepository.swift */; };
+		DA01AAEB293CE3250045835A /* imdb_mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAC9293BAA1A0045835A /* imdb_mock.swift */; };
+		DA01AAEC293CE3270045835A /* imdb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210736293B84E500E23396 /* imdb.swift */; };
+		DA01AAED293CE32A0045835A /* imdb_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21073B293B896900E23396 /* imdb_model.swift */; };
+		DA01AAF0293D36FF0045835A /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = DA01AAEF293D36FF0045835A /* Fakery */; };
+		DA01AAF2293D3C070045835A /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAF1293D3C070045835A /* ViewModelTests.swift */; };
+		DA01AAF3293D3CA90045835A /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD1293BC02C0045835A /* MovieDetailViewModel.swift */; };
 		DA2106FD293B7A8100E23396 /* imdb_exerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FC293B7A8100E23396 /* imdb_exerciseApp.swift */; };
 		DA2106FF293B7A8100E23396 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FE293B7A8100E23396 /* Persistence.swift */; };
 		DA210702293B7A8100E23396 /* imdb_exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */; };
 		DA210704293B7A8100E23396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210703293B7A8100E23396 /* ContentView.swift */; };
 		DA210706293B7A8200E23396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA210705293B7A8200E23396 /* Assets.xcassets */; };
 		DA21070A293B7A8200E23396 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA210709293B7A8200E23396 /* Preview Assets.xcassets */; };
-		DA210714293B7A8200E23396 /* imdb_exerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210713293B7A8200E23396 /* imdb_exerciseTests.swift */; };
 		DA21071E293B7A8200E23396 /* imdb_exerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21071D293B7A8200E23396 /* imdb_exerciseUITests.swift */; };
 		DA210720293B7A8200E23396 /* imdb_exerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21071F293B7A8200E23396 /* imdb_exerciseUITestsLaunchTests.swift */; };
 		DA210737293B84E500E23396 /* imdb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210736293B84E500E23396 /* imdb.swift */; };
@@ -59,6 +73,8 @@
 		DA01AAD7293BD0220045835A /* movie_repository_mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movie_repository_mock.swift; sourceTree = "<group>"; };
 		DA01AADC293CD4DF0045835A /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		DA01AADE293CD7CB0045835A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DA01AAE0293CE0620045835A /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		DA01AAF1293D3C070045835A /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		DA2106F9293B7A8100E23396 /* imdb-exercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "imdb-exercise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2106FC293B7A8100E23396 /* imdb_exerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_exerciseApp.swift; sourceTree = "<group>"; };
 		DA2106FE293B7A8100E23396 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -68,7 +84,6 @@
 		DA210707293B7A8200E23396 /* imdb_exercise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = imdb_exercise.entitlements; sourceTree = "<group>"; };
 		DA210709293B7A8200E23396 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA21070F293B7A8200E23396 /* imdb-exerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "imdb-exerciseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA210713293B7A8200E23396 /* imdb_exerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_exerciseTests.swift; sourceTree = "<group>"; };
 		DA210719293B7A8200E23396 /* imdb-exerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "imdb-exerciseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA21071D293B7A8200E23396 /* imdb_exerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_exerciseUITests.swift; sourceTree = "<group>"; };
 		DA21071F293B7A8200E23396 /* imdb_exerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_exerciseUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -87,6 +102,7 @@
 			files = (
 				DA01AADB293BE7AD0045835A /* Kingfisher in Frameworks */,
 				DA21073A293B860800E23396 /* Alamofire in Frameworks */,
+				DA01AAF0293D36FF0045835A /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +211,8 @@
 		DA210712293B7A8200E23396 /* imdb-exerciseTests */ = {
 			isa = PBXGroup;
 			children = (
-				DA210713293B7A8200E23396 /* imdb_exerciseTests.swift */,
+				DA01AAE0293CE0620045835A /* ModelTests.swift */,
+				DA01AAF1293D3C070045835A /* ViewModelTests.swift */,
 			);
 			path = "imdb-exerciseTests";
 			sourceTree = "<group>";
@@ -263,6 +280,7 @@
 			packageProductDependencies = (
 				DA210739293B860800E23396 /* Alamofire */,
 				DA01AADA293BE7AD0045835A /* Kingfisher */,
+				DA01AAEF293D36FF0045835A /* Fakery */,
 			);
 			productName = "imdb-exercise";
 			productReference = DA2106F9293B7A8100E23396 /* imdb-exercise.app */;
@@ -339,6 +357,7 @@
 			packageReferences = (
 				DA210738293B860800E23396 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DA01AAD9293BE7AD0045835A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DA01AAEE293D36FF0045835A /* XCRemoteSwiftPackageReference "Fakery" */,
 			);
 			productRefGroup = DA2106FA293B7A8100E23396 /* Products */;
 			projectDirPath = "";
@@ -406,7 +425,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA210714293B7A8200E23396 /* imdb_exerciseTests.swift in Sources */,
+				DA01AAE9293CE3150045835A /* movie_repository_mock.swift in Sources */,
+				DA01AAED293CE32A0045835A /* imdb_model.swift in Sources */,
+				DA01AAEC293CE3270045835A /* imdb.swift in Sources */,
+				DA01AAE8293CE3100045835A /* response.swift in Sources */,
+				DA01AAE6293CE3090045835A /* config_manager.swift in Sources */,
+				DA01AAE7293CE30D0045835A /* enum.swift in Sources */,
+				DA01AAE4293CE2C00045835A /* Persistence.swift in Sources */,
+				DA01AAE3293CE2AD0045835A /* model.swift in Sources */,
+				DA01AAE2293CE0620045835A /* ModelTests.swift in Sources */,
+				DA01AAEA293CE3220045835A /* MovieRepository.swift in Sources */,
+				DA01AAF3293D3CA90045835A /* MovieDetailViewModel.swift in Sources */,
+				DA01AAE5293CE2F40045835A /* imdb_exercise.xcdatamodeld in Sources */,
+				DA01AAF2293D3C070045835A /* ViewModelTests.swift in Sources */,
+				DA01AAEB293CE3250045835A /* imdb_mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +794,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		DA01AAEE293D36FF0045835A /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		DA210738293B860800E23396 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -777,6 +817,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA01AAD9293BE7AD0045835A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		DA01AAEF293D36FF0045835A /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA01AAEE293D36FF0045835A /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
 		};
 		DA210739293B860800E23396 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
