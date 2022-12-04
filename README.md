@@ -18,4 +18,4 @@ Swift iOS Application
 - SwiftUI
 
 ### Caching
-CoreData
+- CoreData
