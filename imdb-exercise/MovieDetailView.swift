@@ -16,13 +16,11 @@ struct MovieDetailView: View {
     var body: some View {
         NavigationView {
             List {
-                KFImage.url(adapter.viewModel.image!)
+                KFImage.url(adapter.viewModel.image)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 140, height: 180)
-                HStack{
-                    Text(adapter.viewModel.fullTitle ?? "").font(.title)
-                }
+                Text(adapter.viewModel.fullTitle ?? "").font(.title)
                 Text(adapter.viewModel.description ?? "")
                 HStack{
                     Text("Year:").bold()
