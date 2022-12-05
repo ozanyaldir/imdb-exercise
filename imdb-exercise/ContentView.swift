@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct ContentView: View {
-    @StateObject var adapter: ContentViewAdapter
+    @ObservedObject var adapter: ContentViewAdapter
     
     @State private var message: ErrorMessage?
     

@@ -9,19 +9,65 @@ import SwiftUI
 import Kingfisher
 
 struct MovieDetailView: View {
-    let movieDetailViewModel: MovieDetailViewModel
+    @ObservedObject var adapter: MovieDetailAdapter
+    
+    @State private var message: ErrorMessage?
     
     var body: some View {
         NavigationView {
             List {
-                KFImage.url(movieDetailViewModel.image!)
+                KFImage.url(adapter.viewModel.image!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 140, height: 180)
-                Text(movieDetailViewModel.description ?? "Undefined")
+                HStack{
+                    Text(adapter.viewModel.fullTitle ?? "").font(.title)
+                }
+                Text(adapter.viewModel.description ?? "")
+                HStack{
+                    Text("Year:").bold()
+                    Text(adapter.viewModel.year ?? "")
+                }
+                HStack{
+                    Text("imDb:").bold()
+                    Text(adapter.viewModel.imDb ?? "")
+                }
+                HStack{
+                    Text("metacritic:").bold()
+                    Text(adapter.viewModel.metacritic ?? "")
+                }
+                HStack{
+                    Text("theMovieDb:").bold()
+                    Text(adapter.viewModel.theMovieDb ?? "")
+                }
+                HStack{
+                    Text("rottenTomatoes:").bold()
+                    Text(adapter.viewModel.rottenTomatoes ?? "")
+                }
+                HStack{
+                    Text("filmAffinity:").bold()
+                    Text(adapter.viewModel.filmAffinity ?? "")
+                }
             }
         }
-        .navigationBarTitle(movieDetailViewModel.title ?? "Undefined")
+        .navigationBarTitle(adapter.viewModel.title ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear{
+            self.adapter.FetchMovieRankings(completion: handleSearchResponse(r:))
+        }
+        .alert(item: $message) { message in
+            Alert(title: Text("Error"), message: Text(message.message), dismissButton: .cancel())
+        }
+    }
+    
+    private func handleSearchResponse(r: Result<MovieDetailViewModel, ViewError>){
+        switch r {
+        case .success(_): break
+        case .failure(let err): // Create new Alert
+            switch err {
+            case .message(let m): message = m
+            case .internalError(let err): message = err
+            }
+        }
     }
 }

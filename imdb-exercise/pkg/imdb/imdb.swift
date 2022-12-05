@@ -15,7 +15,7 @@ enum APIFailure: Error {
 
 protocol iIMDB {
     func SearchMovies(title: String, completion: @escaping (Result<[MovieDetailDTO], APIFailure>) -> Void)
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO?, APIFailure>) -> Void)
+    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void)
 }
 
 struct IMDB: iIMDB {
@@ -52,7 +52,7 @@ struct IMDB: iIMDB {
             }
     }
     
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO?, APIFailure>) -> Void) {
+    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void) {
         let url = String(format: Paths.getMovieRatingsByID, baseURL, apiKey, id)
         
         AF.request(url, headers: self.headers)

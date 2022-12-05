@@ -19,7 +19,7 @@ struct IMDBMock: iIMDB {
         completion(.success([m]))
     }
     
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO?, APIFailure>) -> Void) {
+    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void) {
         let m = MovieRatingsDTO(
             imDbId: "",
             title: "",

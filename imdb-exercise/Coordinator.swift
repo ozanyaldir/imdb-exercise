@@ -22,6 +22,10 @@ struct Coordinator: iCoordinator {
     }
     
     func MakeMovieDetailView(vm: MovieDetailViewModel) -> MovieDetailView{
-        return MovieDetailView(movieDetailViewModel: vm)
+        let configManager = Config.shared
+        //let movieRepository = MovieRepository(context: pc.container.viewContext)
+        let imdb = IMDB(baseURL: configManager.GetIMDBAPIURL(), apiKey: configManager.GetIMDBAPIKey())
+        let a = MovieDetailAdapter(imdb: imdb, viewModel: vm)
+        return MovieDetailView(adapter: a)
     }
 }

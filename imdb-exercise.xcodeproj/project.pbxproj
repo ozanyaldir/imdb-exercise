@@ -45,6 +45,7 @@
 		DA210742293BA24600E23396 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210741293BA24600E23396 /* enum.swift */; };
 		DA210744293BA25000E23396 /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210743293BA25000E23396 /* response.swift */; };
 		DA210746293BA59E00E23396 /* ContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210745293BA59E00E23396 /* ContentViewAdapter.swift */; };
+		DA79BBEE293DE10500897D08 /* MovieDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79BBED293DE10500897D08 /* MovieDetailAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		DA210741293BA24600E23396 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
 		DA210743293BA25000E23396 /* response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = response.swift; sourceTree = "<group>"; };
 		DA210745293BA59E00E23396 /* ContentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewAdapter.swift; sourceTree = "<group>"; };
+		DA79BBED293DE10500897D08 /* MovieDetailAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				DA210745293BA59E00E23396 /* ContentViewAdapter.swift */,
 				DA01AAD1293BC02C0045835A /* MovieDetailViewModel.swift */,
 				DA01AADC293CD4DF0045835A /* MovieDetailView.swift */,
+				DA79BBED293DE10500897D08 /* MovieDetailAdapter.swift */,
 				DA210705293B7A8200E23396 /* Assets.xcassets */,
 				DA210707293B7A8200E23396 /* imdb_exercise.entitlements */,
 				DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */,
@@ -414,6 +417,7 @@
 				DA01AADF293CD7CB0045835A /* Coordinator.swift in Sources */,
 				DA210704293B7A8100E23396 /* ContentView.swift in Sources */,
 				DA21073F293B9EC200E23396 /* model.swift in Sources */,
+				DA79BBEE293DE10500897D08 /* MovieDetailAdapter.swift in Sources */,
 				DA01AAD8293BD0220045835A /* movie_repository_mock.swift in Sources */,
 				DA2106FF293B7A8100E23396 /* Persistence.swift in Sources */,
 				DA01AADD293CD4DF0045835A /* MovieDetailView.swift in Sources */,
