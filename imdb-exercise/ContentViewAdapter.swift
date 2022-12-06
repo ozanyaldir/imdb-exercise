@@ -79,7 +79,7 @@ class ContentViewAdapter: NSObject, ObservableObject {
 }
 
 extension ContentViewAdapter: MovieRepositoryContentDelegate{
-    func moviesListDidChangeContent(_ movies: [Movie]) {
+    func moviesListDidChangeContent(_ movies: [MovieDetail]) {
         self.movies = movies.map({MovieDetailViewModel(m: $0)})
     }
 }

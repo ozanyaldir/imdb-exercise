@@ -20,14 +20,16 @@ final class MovieDetailViewModelTests: XCTestCase {
     }
     
     func test_should_succeed_fillEntity() throws {
-        let mEntity = Movie(context: ctx)
-        mEntity.id = faker.lorem.word()
-        mEntity.resultType = faker.lorem.word()
-        mEntity.title = faker.name.title()
-        mEntity.image = URL(string: faker.internet.url())
-        mEntity.descr = faker.lorem.words(amount: 5)
+        let mModel = MovieDetail(
+            id: faker.lorem.word(),
+            resultType: faker.lorem.word(),
+            image: faker.internet.url(),
+            title: faker.name.title(),
+            description: faker.lorem.words(amount: 4),
+            movieRating: nil
+        )
         
-        var vm = MovieDetailViewModel(m: mEntity)
+        var vm = MovieDetailViewModel(m: mModel)
         
         let mrModel = MovieRatings(
             imDbId: faker.lorem.word(),

@@ -124,7 +124,7 @@ class MovieRepository: NSObject, iMovieRepository {
 extension MovieRepository: NSFetchedResultsControllerDelegate {
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
       if let ms = controller.fetchedObjects as? [Movie] {
-          self.contentDelegate?.moviesListDidChangeContent(ms)
+          self.contentDelegate?.moviesListDidChangeContent(ms.map({MovieDetail(movie: $0)}))
       }
   }
 }

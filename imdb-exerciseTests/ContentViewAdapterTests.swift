@@ -23,11 +23,10 @@ final class ContentViewAdapterTests: XCTestCase {
         self.faker = Faker(locale: "en-US")
         self.ctx = PersistenceController.preview.container.viewContext
         self.coordinator = Coordinator()
-        
+    }
+    
+    func test_should_succeed_SearchMovies() throws {
         let imdbMock = mock(imdb_exercise.iIMDB.self)
         let movieRepoMock = mock(imdb_exercise.iMovieRepository.self)
-        
-        
     }
-
 }

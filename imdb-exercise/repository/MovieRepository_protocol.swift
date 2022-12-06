@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol MovieRepositoryContentDelegate: AnyObject{
-    func moviesListDidChangeContent(_ movies: [Movie])
+    func moviesListDidChangeContent(_ movies: [MovieDetail])
 }
 
 protocol iMovieRepository{

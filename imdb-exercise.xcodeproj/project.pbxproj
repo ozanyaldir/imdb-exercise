@@ -18,7 +18,6 @@
 		DA01AAE2293CE0620045835A /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAE0293CE0620045835A /* ModelTests.swift */; };
 		DA01AAE3293CE2AD0045835A /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21073E293B9EC200E23396 /* model.swift */; };
 		DA01AAE4293CE2C00045835A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2106FE293B7A8100E23396 /* Persistence.swift */; };
-		DA01AAE5293CE2F40045835A /* imdb_exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */; };
 		DA01AAE6293CE3090045835A /* config_manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AACF293BBF100045835A /* config_manager.swift */; };
 		DA01AAE7293CE30D0045835A /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210741293BA24600E23396 /* enum.swift */; };
 		DA01AAE8293CE3100045835A /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210743293BA25000E23396 /* response.swift */; };
@@ -50,6 +49,7 @@
 		DAE7CFDC293F671100629A4F /* ContentViewAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7CFDB293F671100629A4F /* ContentViewAdapterTests.swift */; };
 		DAE7CFDE293F694300629A4F /* MovieRepository_protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7CFDD293F694300629A4F /* MovieRepository_protocol.swift */; };
 		DAE7CFDF293F694600629A4F /* MovieRepository_protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7CFDD293F694300629A4F /* MovieRepository_protocol.swift */; };
+		DAE7CFE4293F818500629A4F /* imdb_exercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA210700293B7A8100E23396 /* imdb_exercise.xcdatamodeld */; };
 		EE4FE7F4E0A34037E5326DCF /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39331419852C8AEE451EED0B /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
@@ -482,6 +482,7 @@
 				DA01AAED293CE32A0045835A /* imdb_model.swift in Sources */,
 				DAE7CFDC293F671100629A4F /* ContentViewAdapterTests.swift in Sources */,
 				DA01AAE8293CE3100045835A /* response.swift in Sources */,
+				DAE7CFE4293F818500629A4F /* imdb_exercise.xcdatamodeld in Sources */,
 				DA01AAE6293CE3090045835A /* config_manager.swift in Sources */,
 				DA01AAE7293CE30D0045835A /* enum.swift in Sources */,
 				DA01AAE4293CE2C00045835A /* Persistence.swift in Sources */,
@@ -489,7 +490,6 @@
 				DA01AAE2293CE0620045835A /* ModelTests.swift in Sources */,
 				DAE7CFDA293F66F800629A4F /* imdb_protocol.swift in Sources */,
 				DA01AAF3293D3CA90045835A /* MovieDetailViewModel.swift in Sources */,
-				DA01AAE5293CE2F40045835A /* imdb_exercise.xcdatamodeld in Sources */,
 				DA01AAF2293D3C070045835A /* ViewModelTests.swift in Sources */,
 				DA01AAEB293CE3250045835A /* imdb_mock.swift in Sources */,
 				EE4FE7F4E0A34037E5326DCF /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift in Sources */,
