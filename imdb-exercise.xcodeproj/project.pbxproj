@@ -46,6 +46,8 @@
 		DA210744293BA25000E23396 /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210743293BA25000E23396 /* response.swift */; };
 		DA210746293BA59E00E23396 /* ContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210745293BA59E00E23396 /* ContentViewAdapter.swift */; };
 		DA79BBEE293DE10500897D08 /* MovieDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79BBED293DE10500897D08 /* MovieDetailAdapter.swift */; };
+		DAE7CFD6293F62B100629A4F /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = DAE7CFD5293F62B100629A4F /* Mockingbird */; };
+		EE4FE7F4E0A34037E5326DCF /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39331419852C8AEE451EED0B /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39331419852C8AEE451EED0B /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "imdb_exerciseTests-imdb_exerciseMocks.generated.swift"; path = "MockingbirdMocks/imdb_exerciseTests-imdb_exerciseMocks.generated.swift"; sourceTree = "<group>"; };
 		DA01AAC9293BAA1A0045835A /* imdb_mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imdb_mock.swift; sourceTree = "<group>"; };
 		DA01AACB293BBDA20045835A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DA01AACF293BBF100045835A /* config_manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config_manager.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE7CFD6293F62B100629A4F /* Mockingbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BB2A1718A7BE2BFB85879AB /* Generated Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				39331419852C8AEE451EED0B /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift */,
+			);
+			name = "Generated Mocks";
+			sourceTree = "<group>";
+		};
 		DA01AAC8293BAA0C0045835A /* mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 				DA210712293B7A8200E23396 /* imdb-exerciseTests */,
 				DA21071C293B7A8200E23396 /* imdb-exerciseUITests */,
 				DA2106FA293B7A8100E23396 /* Products */,
+				0BB2A1718A7BE2BFB85879AB /* Generated Mocks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -293,6 +306,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA210726293B7A8200E23396 /* Build configuration list for PBXNativeTarget "imdb-exerciseTests" */;
 			buildPhases = (
+				AFDF0E5905760FBC95E7872F /* Generate Mockingbird Mocks */,
 				DA21070B293B7A8200E23396 /* Sources */,
 				DA21070C293B7A8200E23396 /* Frameworks */,
 				DA21070D293B7A8200E23396 /* Resources */,
@@ -303,6 +317,9 @@
 				DA210711293B7A8200E23396 /* PBXTargetDependency */,
 			);
 			name = "imdb-exerciseTests";
+			packageProductDependencies = (
+				DAE7CFD5293F62B100629A4F /* Mockingbird */,
+			);
 			productName = "imdb-exerciseTests";
 			productReference = DA21070F293B7A8200E23396 /* imdb-exerciseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -361,6 +378,7 @@
 				DA210738293B860800E23396 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DA01AAD9293BE7AD0045835A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DA01AAEE293D36FF0045835A /* XCRemoteSwiftPackageReference "Fakery" */,
+				DAE7CFD4293F62B100629A4F /* XCRemoteSwiftPackageReference "mockingbird" */,
 			);
 			productRefGroup = DA2106FA293B7A8100E23396 /* Products */;
 			projectDirPath = "";
@@ -398,6 +416,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFDF0E5905760FBC95E7872F /* Generate Mockingbird Mocks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mockingbird Mocks";
+			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/imdb_exerciseTests-imdb_exerciseMocks.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\n# Prevent Xcode 13 from running this script while indexing.\n[[ \"${ACTION}\" == \"indexbuild\" ]] && exit 0\n\n\"/Users/ozanyaldir/Library/Developer/Xcode/DerivedData/imdb-exercise-gbrqmhgauxtohjfuuhgdmolppwfq/SourcePackages/checkouts/mockingbird/mockingbird\" generate --targets \"imdb-exercise\" --outputs \"${SRCROOT}/MockingbirdMocks/imdb_exerciseTests-imdb_exerciseMocks.generated.swift\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA2106F5293B7A8100E23396 /* Sources */ = {
@@ -443,6 +480,7 @@
 				DA01AAE5293CE2F40045835A /* imdb_exercise.xcdatamodeld in Sources */,
 				DA01AAF2293D3C070045835A /* ViewModelTests.swift in Sources */,
 				DA01AAEB293CE3250045835A /* imdb_mock.swift in Sources */,
+				EE4FE7F4E0A34037E5326DCF /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +852,14 @@
 				minimumVersion = 5.6.1;
 			};
 		};
+		DAE7CFD4293F62B100629A4F /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/birdrides/mockingbird.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.20.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -831,6 +877,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA210738293B860800E23396 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DAE7CFD5293F62B100629A4F /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAE7CFD4293F62B100629A4F /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
 		};
 /* End XCSwiftPackageProductDependency section */
 
