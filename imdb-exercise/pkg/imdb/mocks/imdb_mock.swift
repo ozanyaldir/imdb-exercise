@@ -8,7 +8,7 @@
 import Foundation
 
 struct IMDBMock: iIMDB {
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetailDTO], APIFailure>) -> Void) {
+    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], APIFailure>) -> Void) {
         let m = MovieDetailDTO(
             id: "",
             resultType: "",
@@ -16,10 +16,10 @@ struct IMDBMock: iIMDB {
             title: "",
             description: ""
         )
-        completion(.success([m]))
+        completion(.success([m.toModel()]))
     }
     
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void) {
+    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatings, APIFailure>) -> Void) {
         let m = MovieRatingsDTO(
             imDbId: "",
             title: "",
@@ -33,7 +33,7 @@ struct IMDBMock: iIMDB {
             filmAffinity: "",
             errorMessage: nil
         )
-        completion(.success(m))
+        completion(.success(m.toModel()))
     }
     
     

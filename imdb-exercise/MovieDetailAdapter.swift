@@ -34,8 +34,7 @@ class MovieDetailAdapter: NSObject, ObservableObject {
         self.imdb.GetMovieRatingsByID(id: id) { r in
             switch r {
             case .success(let m):
-                let mr = m.toModel()
-                return completion(.success(mr))
+                return completion(.success(m))
             case .failure(let err):
                 switch err {
                 case .errorMessage(let errM):

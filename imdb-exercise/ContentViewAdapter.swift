@@ -47,7 +47,7 @@ class ContentViewAdapter: NSObject, ObservableObject {
     func SearchMoviesinAPI(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void){
         self.imdb.SearchMovies(title: title) { r in
             switch r {
-            case .success(let m): return completion(.success(m.map({$0.toModel()})))
+            case .success(let m): return completion(.success(m))
             case .failure(let err):
                 switch err {
                 case .errorMessage(let errM):

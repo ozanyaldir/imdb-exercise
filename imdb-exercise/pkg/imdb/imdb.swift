@@ -25,7 +25,7 @@ struct IMDB: iIMDB {
         fileprivate static let getMovieRatingsByID = "%@/Ratings/%@/%@"
     }
     
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetailDTO], APIFailure>) -> Void) {
+    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], APIFailure>) -> Void) {
         let url = String(format: Paths.searchMovies, baseURL, apiKey, title)
         
         AF.request(url, headers: self.headers)
@@ -36,13 +36,13 @@ struct IMDB: iIMDB {
                         return completion(.failure(APIFailure.errorMessage(em)))
                     }
                     
-                    return completion(.success(m.results ?? []))
+                    return completion(.success(m.results?.map({$0.toModel()}) ?? []))
                 case .failure(let err): return completion(.failure(APIFailure.internalError(err)))
                 }
             }
     }
     
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void) {
+    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatings, APIFailure>) -> Void) {
         let url = String(format: Paths.getMovieRatingsByID, baseURL, apiKey, id)
         
         AF.request(url, headers: self.headers)
@@ -53,7 +53,7 @@ struct IMDB: iIMDB {
                         return completion(.failure(APIFailure.errorMessage(em)))
                     }
                     
-                    return completion(.success(m))
+                    return completion(.success(m.toModel()))
                 case .failure(let err): return completion(.failure(APIFailure.internalError(err)))
                 }
             }
