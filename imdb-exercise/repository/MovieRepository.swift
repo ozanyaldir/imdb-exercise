@@ -8,23 +8,6 @@
 import Foundation
 import CoreData
 
-protocol MovieRepositoryContentDelegate: AnyObject{
-    func moviesListDidChangeContent(_ movies: [Movie])
-}
-
-protocol iMovieRepository{
-    var context: NSManagedObjectContext { get }
-    var contentDelegate: MovieRepositoryContentDelegate? { get }
-    
-    func SetContentDelegate(delegate: MovieRepositoryContentDelegate)
-    
-    func FetchMovies() -> ([Movie]?, Error?)
-    func TruncateMoviesTable() -> Error?
-    func InsertMovies(models: [MovieDetail]) -> Error?
-    func UpdateMovieDetails(id: String, model: MovieDetail) -> Error?
-    func UpdateMovieRatings(id: String, model: MovieRatings) -> Error?
-}
-
 class MovieRepository: NSObject, iMovieRepository {
     let context: NSManagedObjectContext
     weak var contentDelegate: MovieRepositoryContentDelegate? = nil

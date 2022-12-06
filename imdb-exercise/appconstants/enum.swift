@@ -15,3 +15,8 @@ enum ConfigKey{
     }
 }
 
+enum APIFailure: Error {
+    case errorMessage(String)
+    case internalError(Error)
+}
+

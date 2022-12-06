@@ -8,16 +8,6 @@
 import Foundation
 import Alamofire
 
-enum APIFailure: Error {
-    case errorMessage(String)
-    case internalError(Error)
-}
-
-protocol iIMDB {
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetailDTO], APIFailure>) -> Void)
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatingsDTO, APIFailure>) -> Void)
-}
-
 struct IMDB: iIMDB {
     fileprivate let baseURL: String
     fileprivate var apiKey: String
