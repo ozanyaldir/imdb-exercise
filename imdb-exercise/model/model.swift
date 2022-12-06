@@ -41,7 +41,7 @@ class MovieDetail{
         self.resultType = movie.resultType
         self.image = movie.image != nil ? movie.image : nil
         self.title = movie.title
-        self.description = movie.description
+        self.description = movie.descr
         
         self.movieRating = MovieRatings(movie: movie)
     }
