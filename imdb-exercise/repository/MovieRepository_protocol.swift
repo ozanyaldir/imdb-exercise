@@ -19,7 +19,7 @@ protocol iMovieRepository{
     
     func SetContentDelegate(delegate: MovieRepositoryContentDelegate)
     
-    func FetchMovies() -> ([Movie]?, Error?)
+    func FetchMovies() -> ([MovieDetail]?, Error?)
     func TruncateMoviesTable() -> Error?
     func InsertMovies(models: [MovieDetail]) -> Error?
     func UpdateMovieDetails(id: String, model: MovieDetail) -> Error?

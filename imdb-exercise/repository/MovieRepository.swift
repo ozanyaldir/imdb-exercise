@@ -40,11 +40,11 @@ class MovieRepository: NSObject, iMovieRepository {
       }
     
     
-    func FetchMovies() -> ([Movie]?, Error?){
+    func FetchMovies() -> ([MovieDetail]?, Error?){
         do {
             try searchMoviesController.performFetch()
             guard let movies = searchMoviesController.fetchedObjects else { return (nil, nil) }
-            return (movies, nil)
+            return (movies.map({MovieDetail(movie: $0)}), nil)
         } catch {
           return (nil, error)
         }

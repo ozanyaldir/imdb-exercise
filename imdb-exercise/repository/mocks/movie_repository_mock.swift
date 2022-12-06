@@ -22,7 +22,7 @@ class MovieRepositoryMock: iMovieRepository{
         self.context = context
     }
     
-    func FetchMovies() -> ([Movie]?, Error?) {
+    func FetchMovies() -> ([MovieDetail]?, Error?) {
         return ([], nil)
     }
     

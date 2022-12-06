@@ -25,6 +25,8 @@ final class ContentViewAdapterTests: XCTestCase {
         self.coordinator = Coordinator()
         
         let imdbMock = mock(imdb_exercise.iIMDB.self)
+        let movieRepoMock = mock(imdb_exercise.iMovieRepository.self)
+        
         
     }
 

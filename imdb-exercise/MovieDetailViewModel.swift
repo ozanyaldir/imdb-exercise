@@ -38,6 +38,23 @@ struct MovieDetailViewModel: Identifiable, Hashable {
             self.filmAffinity = r?.filmAffinity
     }
     
+    init(m: MovieDetail) {
+        self.id = m.id
+        self.title = m.title
+        self.image = m.image
+        self.type = m.resultType
+        self.description = m.description
+        
+        self.fullTitle = m.movieRating?.fullTitle
+        self.type = m.movieRating?.type
+        self.year = m.movieRating?.year
+        self.imDb = m.movieRating?.imDb
+        self.metacritic = m.movieRating?.metacritic
+        self.theMovieDb = m.movieRating?.theMovieDb
+        self.rottenTomatoes = m.movieRating?.rottenTomatoes
+        self.filmAffinity = m.movieRating?.filmAffinity
+    }
+    
     init(m: Movie) {
         self.id = m.id
         self.title = m.title

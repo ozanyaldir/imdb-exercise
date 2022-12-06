@@ -20,7 +20,7 @@ final class MovieDetailTests: XCTestCase {
     }
     
     func test_should_succeed_toEntity() throws {
-        let mModel = MovieDetail(id: faker.lorem.word(), resultType: faker.lorem.word(), image: faker.internet.url(), title: faker.name.title(), description: faker.lorem.words(amount: 4))
+        let mModel = MovieDetail(id: faker.lorem.word(), resultType: faker.lorem.word(), image: faker.internet.url(), title: faker.name.title(), description: faker.lorem.words(amount: 4), movieRating: nil)
         let mEntity = mModel.toEntity(ctx: ctx)
         
         XCTAssertEqual(mModel.id, mEntity.id)
@@ -31,7 +31,7 @@ final class MovieDetailTests: XCTestCase {
     }
     
     func test_should_succeed_fillEntity() throws {
-        let mModel = MovieDetail(id: faker.lorem.word(), resultType: faker.lorem.word(), image: faker.internet.url(), title: faker.name.title(), description: faker.lorem.words(amount: 5))
+        let mModel = MovieDetail(id: faker.lorem.word(), resultType: faker.lorem.word(), image: faker.internet.url(), title: faker.name.title(), description: faker.lorem.words(amount: 5), movieRating: nil)
         
         var mEntity = Movie(context: ctx)
         mEntity.id = faker.lorem.word()

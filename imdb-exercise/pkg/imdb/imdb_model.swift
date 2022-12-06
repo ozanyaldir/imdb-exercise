@@ -31,7 +31,8 @@ struct MovieDetailDTO: Decodable {
             resultType: self.resultType,
             image: self.image,
             title: self.title,
-            description: self.description
+            description: self.description,
+            movieRating: nil
         )
     }
 }
