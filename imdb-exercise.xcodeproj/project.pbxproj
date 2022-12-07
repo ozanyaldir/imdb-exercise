@@ -39,6 +39,7 @@
 		DA210742293BA24600E23396 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210741293BA24600E23396 /* enum.swift */; };
 		DA210744293BA25000E23396 /* response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210743293BA25000E23396 /* response.swift */; };
 		DA210746293BA59E00E23396 /* ContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA210745293BA59E00E23396 /* ContentViewAdapter.swift */; };
+		DA6EC2842940D4AA002B9A5F /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA01AAD1293BC02C0045835A /* MovieDetailViewModel.swift */; };
 		DA7563B92940A07F008F7CB4 /* entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7563B82940A07F008F7CB4 /* entity.swift */; };
 		DA7563BA2940A555008F7CB4 /* entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7563B82940A07F008F7CB4 /* entity.swift */; };
 		DA7563BB2940B3E1008F7CB4 /* MovieDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79BBED293DE10500897D08 /* MovieDetailAdapter.swift */; };
@@ -530,6 +531,7 @@
 				DA01AAE2293CE0620045835A /* EntityTests.swift in Sources */,
 				DAE7CFDA293F66F800629A4F /* imdb_protocol.swift in Sources */,
 				DA7563BB2940B3E1008F7CB4 /* MovieDetailAdapter.swift in Sources */,
+				DA6EC2842940D4AA002B9A5F /* MovieDetailViewModel.swift in Sources */,
 				DA7563CC2940C02A008F7CB4 /* imdb_mock.swift in Sources */,
 				DA01AAF2293D3C070045835A /* ViewModelTests.swift in Sources */,
 				EE4FE7F4E0A34037E5326DCF /* imdb_exerciseTests-imdb_exerciseMocks.generated.swift in Sources */,
