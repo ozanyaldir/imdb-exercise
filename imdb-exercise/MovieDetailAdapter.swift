@@ -8,8 +8,13 @@
 import Foundation
 import Combine
 
-class MovieDetailAdapter: NSObject, ObservableObject {
-    private let imdb: iIMDB
+protocol iMovieDetailAdapter{
+    func FetchMovieRatings(completion: @escaping (Result<MovieDetailViewModel, ViewError>) -> Void)
+    func FetchMovieRatingsFromAPI(id: String, completion: @escaping (Result<MovieRatings, ViewError>) -> Void)
+}
+
+class MovieDetailAdapter: NSObject, ObservableObject, iMovieDetailAdapter {
+    let imdb: iIMDB
     
     @Published var viewModel: MovieDetailViewModel
     
@@ -18,7 +23,7 @@ class MovieDetailAdapter: NSObject, ObservableObject {
         self.viewModel = viewModel
     }
     
-    func FetchMovieRankings(completion: @escaping (Result<MovieDetailViewModel, ViewError>) -> Void){
+    func FetchMovieRatings(completion: @escaping (Result<MovieDetailViewModel, ViewError>) -> Void){
         self.FetchMovieRatingsFromAPI(id: self.viewModel.id ?? "") {[unowned self] r in
             switch r {
             case .success(let mr):

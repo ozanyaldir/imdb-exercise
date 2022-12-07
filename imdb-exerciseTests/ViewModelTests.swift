@@ -7,26 +7,23 @@
 
 import XCTest
 import Fakery
-import CoreData
 
 final class MovieDetailViewModelTests: XCTestCase {
     
     var faker: Faker! = nil
-    var ctx: NSManagedObjectContext! = nil
     
     override func setUp() {
         self.faker = Faker(locale: "en-US")
-        self.ctx = PersistenceController.preview.container.viewContext
     }
     
-    func test_should_succeed_fillEntity() throws {
+    func test_should_succeed_fillRatingsInfo() throws {
         let mModel = MovieDetail(
             id: faker.lorem.word(),
             resultType: faker.lorem.word(),
             image: faker.internet.url(),
             title: faker.name.title(),
             description: faker.lorem.words(amount: 4),
-            movieRating: nil
+            movieRatings: nil
         )
         
         var vm = MovieDetailViewModel(m: mModel)

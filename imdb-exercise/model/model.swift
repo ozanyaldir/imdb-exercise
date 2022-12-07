@@ -8,6 +8,15 @@
 import Foundation
 import CoreData
 
+struct ErrorMessage: Identifiable {
+    var id: String { message }
+    let message: String
+}
+
+enum APIFailure: Error {
+    case errorMessage(String)
+    case internalError(Error)
+}
 
 class MovieDetail{
     let id: String?
@@ -16,7 +25,7 @@ class MovieDetail{
     let title: String?
     let description: String?
     
-    let movieRating: MovieRatings?
+    let movieRatings: MovieRatings?
     
     init(
         id: String?,
@@ -24,14 +33,14 @@ class MovieDetail{
         image: String?,
         title: String?,
         description: String?,
-        movieRating: MovieRatings?
+        movieRatings: MovieRatings?
     ) {
         self.id = id
         self.resultType = resultType
         self.image = image != nil ? URL(string: image!) : nil
         self.title = title
         self.description = description
-        self.movieRating = movieRating
+        self.movieRatings = movieRatings
     }
     
     init(
@@ -43,34 +52,7 @@ class MovieDetail{
         self.title = movie.title
         self.description = movie.descr
         
-        self.movieRating = MovieRatings(movie: movie)
-    }
-    
-    func toEntity(ctx: NSManagedObjectContext) -> Movie{
-        var movie = Movie(context: ctx)
-        movie.id = self.id
-        movie.resultType = self.resultType
-        movie.title = self.title
-        movie.image = self.image
-        movie.descr = self.description
-        
-        if let mr = self.movieRating {
-            mr.fillEntity(movie: &movie)
-        }
-        
-        return movie
-    }
-    
-    func fillEntity(movie: inout Movie){
-        movie.id = self.id
-        movie.resultType = self.resultType
-        movie.title = self.title
-        movie.image = self.image
-        movie.descr = self.description
-        
-        if let mr = self.movieRating {
-            mr.fillEntity(movie: &movie)
-        }
+        self.movieRatings = MovieRatings(movie: movie)
     }
 }
 
@@ -121,16 +103,5 @@ class MovieRatings {
         self.theMovieDb = movie.theMovieDb
         self.rottenTomatoes = movie.rottenTomatoes
         self.filmAffinity = movie.filmAffinity
-    }
-    
-    func fillEntity(movie: inout Movie){
-        movie.fullTitle = self.fullTitle
-        movie.type = self.type
-        movie.year = self.year
-        movie.imDb = self.imDb
-        movie.metacritic = self.metacritic
-        movie.theMovieDb = self.theMovieDb
-        movie.rottenTomatoes = self.rottenTomatoes
-        movie.filmAffinity = self.filmAffinity
     }
 }

@@ -44,6 +44,7 @@ class MovieRepository: NSObject, iMovieRepository {
         do {
             try searchMoviesController.performFetch()
             guard let movies = searchMoviesController.fetchedObjects else { return (nil, nil) }
+            
             return (movies.map({MovieDetail(movie: $0)}), nil)
         } catch {
           return (nil, error)
@@ -58,18 +59,19 @@ class MovieRepository: NSObject, iMovieRepository {
                 self.context.delete(object)
             }
             try self.context.save()
-            return nil
             
+            return nil
         } catch {
             return error
         }
     }
     
     func InsertMovies(models: [MovieDetail]) -> Error? {
-        let _ = models.map({$0.toEntity(ctx: self.context)})
+        let _ = models.map({Movie(context: self.context, movieDetail: $0)})
 
         do {
             try self.context.save()
+            
             return nil
         } catch {
             return error
@@ -85,10 +87,11 @@ class MovieRepository: NSObject, iMovieRepository {
             )
             let mes = try self.context.fetch(fetchRequest)
             if mes.count == 1 {
-                var me = mes.first!
-                model.fillEntity(movie: &me)
+                let me = mes.first!
+                me.fillEntity(movieDetail: model)
                 
                 try self.context.save()
+                
                 return nil
             }
             
@@ -106,10 +109,11 @@ class MovieRepository: NSObject, iMovieRepository {
             )
             let mes = try self.context.fetch(fetchRequest)
             if mes.count == 1 {
-                var me = mes.first!
-                model.fillEntity(movie: &me)
+                let me = mes.first!
+                me.fillEntity(movieRatings: model)
                 
                 try self.context.save()
+                
                 return nil
             }
             

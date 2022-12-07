@@ -32,7 +32,7 @@ struct MovieDetailDTO: Decodable {
             image: self.image,
             title: self.title,
             description: self.description,
-            movieRating: nil
+            movieRatings: nil
         )
     }
 }

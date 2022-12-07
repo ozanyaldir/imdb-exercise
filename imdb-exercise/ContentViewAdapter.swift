@@ -10,17 +10,15 @@ import Combine
 import SwiftUI
 import CoreData
 
-struct ErrorMessage: Identifiable {
-    var id: String { message }
-    let message: String
+protocol iContentViewAdapter{
+    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void)
+    func SearchMoviesinAPI(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void)
+    func CacheMovies(ms: [MovieDetail])
+    func FetchMoviesFromCache()
+    func GetMovieDetailsPage(m: MovieDetailViewModel) -> MovieDetailView
 }
 
-enum ViewError: Error {
-    case message(ErrorMessage)
-    case internalError(ErrorMessage)
-}
-
-class ContentViewAdapter: NSObject, ObservableObject {
+class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
     private let imdb: iIMDB
     private let movieRepository: iMovieRepository
     private let coordinator: iCoordinator

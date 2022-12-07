@@ -28,14 +28,14 @@ struct MovieDetailViewModel: Identifiable, Hashable {
         self.type = m.resultType
         self.description = m.description
         
-        self.fullTitle = m.movieRating?.fullTitle
-        self.type = m.movieRating?.type
-        self.year = m.movieRating?.year
-        self.imDb = m.movieRating?.imDb
-        self.metacritic = m.movieRating?.metacritic
-        self.theMovieDb = m.movieRating?.theMovieDb
-        self.rottenTomatoes = m.movieRating?.rottenTomatoes
-        self.filmAffinity = m.movieRating?.filmAffinity
+        self.fullTitle = m.movieRatings?.fullTitle
+        self.type = m.movieRatings?.type
+        self.year = m.movieRatings?.year
+        self.imDb = m.movieRatings?.imDb
+        self.metacritic = m.movieRatings?.metacritic
+        self.theMovieDb = m.movieRatings?.theMovieDb
+        self.rottenTomatoes = m.movieRatings?.rottenTomatoes
+        self.filmAffinity = m.movieRatings?.filmAffinity
     }
     
     mutating func fillRatingsInfo(r: MovieRatings) {

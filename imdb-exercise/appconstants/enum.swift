@@ -14,9 +14,3 @@ enum ConfigKey{
         static let apiKey = "IMDB_API_KEY"
     }
 }
-
-enum APIFailure: Error {
-    case errorMessage(String)
-    case internalError(Error)
-}
-

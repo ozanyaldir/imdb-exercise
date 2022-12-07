@@ -51,7 +51,7 @@ struct MovieDetailView: View {
         .navigationBarTitle(adapter.viewModel.title ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
-            self.adapter.FetchMovieRankings(completion: handleSearchResponse(r:))
+            self.adapter.FetchMovieRatings(completion: handleSearchResponse(r:))
         }
         .alert(item: $message) { message in
             Alert(title: Text("Error"), message: Text(message.message), dismissButton: .cancel())
