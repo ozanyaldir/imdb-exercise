@@ -11,6 +11,7 @@ import CoreData
 struct ErrorMessage: Identifiable {
     var id: String { message }
     let message: String
+    let type: ViewErrorType
 }
 
 enum APIFailure: Error {

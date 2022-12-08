@@ -11,8 +11,6 @@ import Kingfisher
 struct MovieDetailView: View {
     @ObservedObject var adapter: MovieDetailAdapter
     
-    @State private var message: ErrorMessage?
-    
     var body: some View {
         NavigationView {
             List {
@@ -50,22 +48,13 @@ struct MovieDetailView: View {
         }
         .navigationBarTitle(adapter.viewModel.title ?? "")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear{
-            self.adapter.FetchMovieRatings(completion: handleSearchResponse(r:))
-        }
-        .alert(item: $message) { message in
-            Alert(title: Text("Error"), message: Text(message.message), dismissButton: .cancel())
-        }
-    }
-    
-    private func handleSearchResponse(r: Result<MovieDetailViewModel, ViewError>){
-        switch r {
-        case .success(_): break
-        case .failure(let err): // Create new Alert
-            switch err {
-            case .message(let m): message = m
-            case .internalError(let err): message = err
+        .onAppear {
+            Task {
+                await self.adapter.FetchMovieRatings()
             }
+        }
+        .alert(item: $adapter.alertMessage) { alertMessage in
+            Alert(title: Text("Error"), message: Text(alertMessage.message), dismissButton: .cancel())
         }
     }
 }

@@ -7,7 +7,3 @@
 
 import Foundation
 
-enum ViewError: Error {
-    case message(ErrorMessage)
-    case internalError(ErrorMessage)
-}

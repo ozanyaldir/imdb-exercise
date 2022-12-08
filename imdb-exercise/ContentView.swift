@@ -11,8 +11,6 @@ import Kingfisher
 struct ContentView: View {
     @ObservedObject var adapter: ContentViewAdapter
     
-    @State private var message: ErrorMessage?
-    
     @State private var searchText = ""
 
     var body: some View {
@@ -35,25 +33,17 @@ struct ContentView: View {
         }
         .searchable(text: $searchText, prompt: "Look for something")
         .onSubmit(of: .search){
-            adapter.SearchMovies(title: searchText, completion: handleSearchResponse(r:))
-        }
-        .alert(item: $message) { message in
-            Alert(title: Text("Error"), message: Text(message.message), dismissButton: .cancel())
+            Task {
+                await adapter.SearchMovies(title:searchText)
+            }
         }
         .onAppear{
-            adapter.FetchMoviesFromCache()
-        }
-    }
-    
-    private func handleSearchResponse(r: Result<[MovieDetail], ViewError>){
-        switch r {
-        case .success(let r):
-            withAnimation { adapter.CacheMovies(ms: r) }
-        case .failure(let err): // Create new Alert
-            switch err {
-            case .message(let m): message = m
-            case .internalError(let err): message = err
+            withAnimation{
+                adapter.FetchMoviesFromCache()
             }
+        }
+        .alert(item: $adapter.alertMessage) { alertMessage in
+            Alert(title: Text("Error"), message: Text(alertMessage.message), dismissButton: .cancel())
         }
     }
 }

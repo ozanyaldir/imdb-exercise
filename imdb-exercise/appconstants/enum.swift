@@ -14,3 +14,8 @@ enum ConfigKey{
         static let apiKey = "IMDB_API_KEY"
     }
 }
+
+enum ViewErrorType {
+    case message
+    case internalError
+}

@@ -25,37 +25,41 @@ struct IMDB: iIMDB {
         fileprivate static let getMovieRatingsByID = "%@/Ratings/%@/%@"
     }
     
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], APIFailure>) -> Void) {
+    func SearchMovies(title: String) async throws -> [MovieDetail] {
         let url = String(format: Paths.searchMovies, baseURL, apiKey, title)
         
-        AF.request(url, headers: self.headers)
-            .responseDecodable(of: MovieDetailResponseDTO.self) { response in
-                switch response.result{
-                case .success(let m):
-                    if let em = m.errorMessage, em.count > 0{
-                        return completion(.failure(APIFailure.errorMessage(em)))
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, headers: self.headers)
+                .responseDecodable(of: MovieDetailResponseDTO.self) { response in
+                    switch response.result{
+                    case .success(let m):
+                        if let em = m.errorMessage, em.count > 0{
+                            return continuation.resume(with: .failure(APIFailure.errorMessage(em)))
+                        }
+                        
+                        return continuation.resume(with: .success(m.results?.map({$0.toModel()}) ?? []))
+                    case .failure(let err): return continuation.resume(with: .failure(APIFailure.internalError(err)))
                     }
-                    
-                    return completion(.success(m.results?.map({$0.toModel()}) ?? []))
-                case .failure(let err): return completion(.failure(APIFailure.internalError(err)))
                 }
-            }
+        }
     }
     
-    func GetMovieRatingsByID(id: String, completion: @escaping (Result<MovieRatings, APIFailure>) -> Void) {
+    func GetMovieRatingsByID(id: String) async throws -> MovieRatings {
         let url = String(format: Paths.getMovieRatingsByID, baseURL, apiKey, id)
         
-        AF.request(url, headers: self.headers)
-            .responseDecodable(of: MovieRatingsDTO.self) { response in
-                switch response.result{
-                case .success(let m):
-                    if let em = m.errorMessage, em.count > 0{
-                        return completion(.failure(APIFailure.errorMessage(em)))
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, headers: self.headers)
+                .responseDecodable(of: MovieRatingsDTO.self) { response in
+                    switch response.result{
+                    case .success(let m):
+                        if let em = m.errorMessage, em.count > 0{
+                            return continuation.resume(with: .failure(APIFailure.errorMessage(em)))
+                        }
+                        
+                        return continuation.resume(with: .success(m.toModel()))
+                    case .failure(let err): return continuation.resume(with: .failure(APIFailure.internalError(err)))
                     }
-                    
-                    return completion(.success(m.toModel()))
-                case .failure(let err): return completion(.failure(APIFailure.internalError(err)))
                 }
-            }
+        }
     }
 }

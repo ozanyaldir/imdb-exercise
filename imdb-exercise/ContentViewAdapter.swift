@@ -11,8 +11,8 @@ import SwiftUI
 import CoreData
 
 protocol iContentViewAdapter{
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void)
-    func SearchMoviesinAPI(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void)
+    func SearchMovies(title: String) async -> Void
+    func SearchMoviesinAPI(title: String) async -> ([MovieDetail]?, ErrorMessage?)
     func CacheMovies(ms: [MovieDetail])
     func FetchMoviesFromCache()
     func GetMovieDetailsPage(m: MovieDetailViewModel) -> MovieDetailView
@@ -24,6 +24,7 @@ class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
     private let coordinator: iCoordinator
     
     @Published var movies: [MovieDetailViewModel] = []
+    @Published var alertMessage: ErrorMessage?
     
     init(coordinator: iCoordinator, movieRepository: iMovieRepository, imdb: iIMDB) {
         self.movieRepository = movieRepository
@@ -36,23 +37,36 @@ class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
     }
     
     
-    func SearchMovies(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void){
-        self.FetchMoviesFromCache()
+    func SearchMovies(title: String) async -> Void {
+        let (r, err) = await self.SearchMoviesinAPI(title: title)
         
-        self.SearchMoviesinAPI(title: title, completion: completion)
+        DispatchQueue.main.async { [unowned self] in
+            if let err = err {
+                return self.alertMessage = err
+            }
+            
+            guard let r = r else { return self.alertMessage = ErrorMessage(message: Response.internalError, type: .message) }
+            
+            self.CacheMovies(ms: r)
+            
+        }
     }
     
-    func SearchMoviesinAPI(title: String, completion: @escaping (Result<[MovieDetail], ViewError>) -> Void){
-        self.imdb.SearchMovies(title: title) { r in
-            switch r {
-            case .success(let m): return completion(.success(m))
-            case .failure(let err):
-                switch err {
-                case .errorMessage(let errM):
-                    return completion(.failure(.message(ErrorMessage(message: errM))))
-                case .internalError(let err):
-                    return completion(.failure(.internalError(ErrorMessage(message: err.localizedDescription))))
-                }
+    func SearchMoviesinAPI(title: String) async -> ([MovieDetail]?, ErrorMessage?) {
+        do {
+            let r = try await self.imdb.SearchMovies(title: title)
+            
+            return (r, nil)
+        }
+        catch {
+            guard let error = error as? APIFailure else {
+                return (nil, ErrorMessage(message: error.localizedDescription, type: .internalError))
+            }
+            switch error {
+            case .errorMessage(let errM):
+                return (nil, ErrorMessage(message: errM, type: .message))
+            case .internalError(let err):
+                return (nil, ErrorMessage(message: err.localizedDescription, type: .internalError))
             }
         }
     }
@@ -65,9 +79,9 @@ class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
     func FetchMoviesFromCache(){
         let (res, err) = movieRepository.FetchMovies()
         if let err = err {
-            debugPrint(err)
-            return
+            return self.alertMessage = ErrorMessage(message: err.localizedDescription, type: .internalError)
         }
+        
         self.movies = res?.map({MovieDetailViewModel(m: $0)}) ?? []
     }
     
