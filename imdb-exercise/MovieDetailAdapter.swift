@@ -6,14 +6,8 @@
 //
 
 import Foundation
-import Combine
 
-protocol iMovieDetailAdapter{
-    func FetchMovieRatings() async
-    func FetchMovieRatingsFromAPI(id: String) async -> (MovieRatings?, ErrorMessage?)
-}
-
-class MovieDetailAdapter: NSObject, ObservableObject, iMovieDetailAdapter {
+class MovieDetailAdapter: NSObject, ObservableObject {
     let imdb: iIMDB
     
     @Published var viewModel: MovieDetailViewModel

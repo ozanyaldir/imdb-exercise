@@ -10,15 +10,7 @@ import Combine
 import SwiftUI
 import CoreData
 
-protocol iContentViewAdapter{
-    func SearchMovies(title: String) async -> Void
-    func SearchMoviesinAPI(title: String) async -> ([MovieDetail]?, ErrorMessage?)
-    func CacheMovies(ms: [MovieDetail])
-    func FetchMoviesFromCache()
-    func GetMovieDetailsPage(m: MovieDetailViewModel) -> MovieDetailView
-}
-
-class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
+class ContentViewAdapter: NSObject, ObservableObject {
     private let imdb: iIMDB
     private let movieRepository: iMovieRepository
     private let coordinator: iCoordinator
@@ -71,11 +63,6 @@ class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
         }
     }
     
-    func CacheMovies(ms: [MovieDetail]){
-        let _ = self.movieRepository.TruncateMoviesTable()
-        let _ = self.movieRepository.InsertMovies(models: ms)
-    }
-    
     func FetchMoviesFromCache(){
         let (res, err) = movieRepository.FetchMovies()
         if let err = err {
@@ -83,6 +70,11 @@ class ContentViewAdapter: NSObject, ObservableObject, iContentViewAdapter {
         }
         
         self.movies = res?.map({MovieDetailViewModel(m: $0)}) ?? []
+    }
+    
+    func CacheMovies(ms: [MovieDetail]){
+        let _ = self.movieRepository.TruncateMoviesTable()
+        let _ = self.movieRepository.InsertMovies(models: ms)
     }
     
     func GetMovieDetailsPage(m: MovieDetailViewModel) -> MovieDetailView{
