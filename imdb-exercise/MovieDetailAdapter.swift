@@ -18,7 +18,7 @@ class MovieDetailAdapter: NSObject, ObservableObject {
         self.viewModel = viewModel
     }
     
-    func FetchMovieRatings() async {
+    func FetchMovieRatings() async  {
         guard let movieID = self.viewModel.id else {
             return
         }

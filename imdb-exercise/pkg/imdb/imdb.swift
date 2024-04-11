@@ -9,24 +9,25 @@ import Foundation
 import Alamofire
 
 struct IMDB: iIMDB {
-    fileprivate let baseURL: String
     fileprivate var apiKey: String
+    
+    init(apiKey: String) {
+        self.apiKey = apiKey
+    }
+    
+    fileprivate static let baseURL: String = "https://imdb-api.com/API"
     
     let headers: HTTPHeaders = [
         .accept("application/json")
     ]
     
-    init(baseURL: String, apiKey: String) {
-        self.baseURL = baseURL
-        self.apiKey = apiKey
-    }
-    enum Paths {
-        fileprivate static let searchMovies = "%@/SearchTitle/%@/%@"
-        fileprivate static let getMovieRatingsByID = "%@/Ratings/%@/%@"
+    fileprivate enum Paths {
+        static let searchMovies = "%@/SearchTitle/%@/%@"
+        static let getMovieRatingsByID = "%@/Ratings/%@/%@"
     }
     
     func SearchMovies(title: String) async throws -> [MovieDetail] {
-        let url = String(format: Paths.searchMovies, baseURL, apiKey, title)
+        let url = String(format: Paths.searchMovies, IMDB.baseURL, apiKey, title)
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, headers: self.headers)
@@ -45,7 +46,7 @@ struct IMDB: iIMDB {
     }
     
     func GetMovieRatingsByID(id: String) async throws -> MovieRatings {
-        let url = String(format: Paths.getMovieRatingsByID, baseURL, apiKey, id)
+        let url = String(format: Paths.getMovieRatingsByID, IMDB.baseURL, apiKey, id)
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, headers: self.headers)

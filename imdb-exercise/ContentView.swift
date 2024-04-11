@@ -50,9 +50,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator: iCoordinator = Coordinator()
-        let movieRepository = MovieRepository(context: PersistenceController.preview.container.viewContext)
-        let a = ContentViewAdapter(coordinator:coordinator, movieRepository: movieRepository, imdb: IMDBMock())
+        let coordinator: iCoordinator = Coordinator(cm: Config.shared, pc: PersistenceController.preview)
+        let movieRepository = coordinator.GetMovieRepository()
+        let a = ContentViewAdapter(coordinator:coordinator, movieRepository: movieRepository, imdb: IMDBMock(apiKey: ""))
         ContentView(adapter: a)
     }
 }

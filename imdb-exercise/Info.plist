@@ -4,8 +4,6 @@
 <dict>
 	<key>DB_NAME</key>
 	<string>imdb_exercise</string>
-	<key>IMDB_API_URL</key>
-	<string>https://imdb-api.com/API</string>
 	<key>IMDB_API_KEY</key>
 	<string>k_oan5sgc8</string>
 </dict>

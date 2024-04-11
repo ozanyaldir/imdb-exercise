@@ -8,6 +8,8 @@
 import Foundation
 
 struct IMDBMock: iIMDB {
+    init(apiKey: String) {}
+    
     func SearchMovies(title: String) async throws -> [MovieDetail] {
         let m = MovieDetailDTO(
             id: "",

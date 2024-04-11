@@ -9,12 +9,20 @@ import SwiftUI
 
 @main
 struct imdb_exerciseApp: App {
-    let persistenceController = PersistenceController.shared
-    let coordinator: iCoordinator = Coordinator()
+    fileprivate let contentView: ContentView!
+    
+    init() {
+        let configManager = Config.shared
+        let persistenceController = PersistenceController.shared
+        
+        let coordinator: iCoordinator = Coordinator(cm: configManager, pc: persistenceController)
+        
+        self.contentView = coordinator.MakeContentView()
+    }
 
     var body: some Scene {
         WindowGroup {
-            coordinator.MakeContentView(pc: persistenceController)
+            self.contentView
         }
     }
 }

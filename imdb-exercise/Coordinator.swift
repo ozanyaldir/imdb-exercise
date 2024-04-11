@@ -8,24 +8,39 @@
 import Foundation
 
 protocol iCoordinator{
-    func MakeContentView(pc: PersistenceController) -> ContentView
+    func MakeContentView() -> ContentView
     func MakeMovieDetailView(vm: MovieDetailViewModel) -> MovieDetailView
+    
+    func GetConfigManager() -> Config
+    func GetMovieRepository() -> MovieRepository
 }
 
 struct Coordinator: iCoordinator {
-    func MakeContentView(pc: PersistenceController) -> ContentView{
-        let configManager = Config.shared
-        let movieRepository = MovieRepository(context: pc.container.viewContext)
-        let imdb = IMDB(baseURL: configManager.GetIMDBAPIURL(), apiKey: configManager.GetIMDBAPIKey())
-        let a = ContentViewAdapter(coordinator: self, movieRepository: movieRepository, imdb: imdb)
-        return ContentView(adapter: a)
+    let configManager: Config
+    let movieRepository: MovieRepository
+    
+    init(cm: Config, pc: PersistenceController) {
+        self.configManager = cm
+        self.movieRepository = MovieRepository(context: pc.container.viewContext)
+    }
+    
+    func MakeContentView() -> ContentView{
+        let imdb = IMDB(apiKey: self.configManager.GetIMDBAPIKey())
+        let adapter = ContentViewAdapter(coordinator: self, movieRepository: self.movieRepository, imdb: imdb)
+        return ContentView(adapter: adapter)
     }
     
     func MakeMovieDetailView(vm: MovieDetailViewModel) -> MovieDetailView{
-        let configManager = Config.shared
-        //let movieRepository = MovieRepository(context: pc.container.viewContext)
-        let imdb = IMDB(baseURL: configManager.GetIMDBAPIURL(), apiKey: configManager.GetIMDBAPIKey())
-        let a = MovieDetailAdapter(imdb: imdb, viewModel: vm)
-        return MovieDetailView(adapter: a)
+        let imdb = IMDB(apiKey: self.configManager.GetIMDBAPIKey())
+        let adapter = MovieDetailAdapter(imdb: imdb, viewModel: vm)
+        return MovieDetailView(adapter: adapter)
+    }
+    
+    func GetMovieRepository() -> MovieRepository {
+        return self.movieRepository
+    }
+    
+    func GetConfigManager() -> Config {
+        return self.configManager
     }
 }

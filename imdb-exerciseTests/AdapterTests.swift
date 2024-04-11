@@ -10,6 +10,8 @@ import Fakery
 import CoreData
 import Mockingbird
 
+@testable import imdb_exercise
+
 /*
 final class ContentViewAdapterTests: XCTestCase {
     
@@ -25,15 +27,19 @@ final class ContentViewAdapterTests: XCTestCase {
     }
     
     func test_should_succeed_SearchMovies() throws {
-        let imdbMock = mock(imdb_exercise.iIMDB.self)
-        let movieRepoMock = mock(imdb_exercise.iMovieRepository.self)
+        let mck = mock(imdb_exercise.iIMDB.self)
+        //let movieRepoMock = mock(imdb_exercise.iMovieRepository.self)
     }
 }
+ 
+ */
+
 final class MovieDetailAdapterTests: XCTestCase {
     
     var faker: Faker! = nil
     
     var adapter: MovieDetailAdapter! = nil
+    var vm: MovieDetailViewModel! = nil
     
     override func setUp() {
         self.faker = Faker(locale: "en-US")
@@ -63,31 +69,14 @@ final class MovieDetailAdapterTests: XCTestCase {
             movieRatings: mrModel
         )
         
-        let imdbMock: iIMDB = mock(iIMDB.self)
-        
-        imdbMock.SearchMovies(title: mModel.title!) { r in
-            debugPrint(r)
-        }
-        
-        imdbMock.GetMovieRatingsByID(id: faker.name.title()) { r in
-            debugPrint(r)
-        }
-        
-        let vm = MovieDetailViewModel(m: mModel)
-        
-        
-        self.adapter = MovieDetailAdapter(imdb: imdbMock, viewModel: vm)
+        self.vm = MovieDetailViewModel(m: mModel)
     }
     
-    func test_should_succeed_SearchMovies() throws {
-        let argumentCaptor = ArgumentCaptor<(Result<[MovieDetail], APIFailure>) -> Void>()
-        verify(self.adapter.imdb.SearchMovies(title: faker.name.title(), completion: argumentCaptor.matcher)).wasCalled()
-        argumentCaptor.value?(.success([]))  // Prints Result.success
+    func test_should_succeed_SearchMovies() async {
         
-        self.adapter.FetchMovieRatingsFromAPI(id: faker.name.title(), completion: { r in
-            debugPrint(r)
-        })
+        let imdbMock = mock(imdb_exercise.iIMDB.self)
+        given(try! await imdbMock.SearchMovies(title: "")).willReturn([])
+        self.adapter = MovieDetailAdapter(imdb: imdbMock, viewModel: vm)
+        
     }
 }
-
- */
